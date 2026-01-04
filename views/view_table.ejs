@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Lihat Data <%= tableName %></title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background: #f4f4f4; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .btn-back { background: #333; color: white; text-decoration: none; padding: 10px 15px; border-radius: 5px; }
+        
+        table { width: 100%; border-collapse: collapse; background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        th { background: #001f3f; color: white; padding: 12px; text-align: left; text-transform: uppercase; font-size: 14px; }
+        td { padding: 10px; border-bottom: 1px solid #ddd; font-size: 13px; }
+        tr:nth-child(even) { background: #f9f9f9; }
+
+        /* Tombol Aksi Dummy */
+        .btn-act { padding: 5px 10px; border-radius: 3px; border:none; color: white; cursor: pointer; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Tabel: <%= tableName.toUpperCase() %></h1>
+        <a href="/dashboard" class="btn-back">⬅ Kembali ke Menu</a>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <% if (data.length > 0) { %>
+                    <% Object.keys(data[0]).forEach(key => { %>
+                        <th><%= key %></th>
+                    <% }) %>
+                    <th>AKSI</th> <% } else { %>
+                    <th>Status</th>
+                <% } %>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (data.length > 0) { %>
+                <% data.forEach(row => { %>
+                <tr>
+                    <% Object.values(row).forEach(val => { %>
+                        <td><%= val %></td>
+                    <% }) %>
+                    
+                    <td>
+                        <button class="btn-act" style="background:orange;">Edit</button>
+                        <button class="btn-act" style="background:red;">Hapus</button>
+                    </td>
+                </tr>
+                <% }) %>
+            <% } else { %>
+                <tr><td style="padding:20px; text-align:center;">Data Kosong.</td></tr>
+            <% } %>
+        </tbody>
+    </table>
+
+</body>
+</html>

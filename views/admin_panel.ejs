@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f4f6f9; padding: 20px; }
+        
+        .header { background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .btn-back { text-decoration: none; color: #333; border: 1px solid #ccc; padding: 5px 10px; border-radius: 4px; }
+
+        /* Tabel Utama */
+        .table-box { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        table { width: 100%; border-collapse: collapse; }
+        thead { background-color: #001f3f; color: white; }
+        th, td { padding: 15px; text-align: left; border-bottom: 1px solid #eee; }
+        tr:hover { background-color: #f1f1f1; }
+
+        /* Style Kolom Khusus */
+        .dept-col { color: #007bff; font-weight: bold; } /* Warna Biru untuk Departemen/Klub */
+        .status-col { color: #28a745; font-weight: bold; } /* Warna Hijau untuk Status/Negara */
+        
+        /* Tombol Aksi */
+        .btn-action { padding: 5px 10px; color: white; border: none; border-radius: 3px; cursor: pointer; margin-right: 5px; }
+        .edit { background: #ffc107; color: black; }
+        .del { background: #dc3545; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div>
+            <h2 style="margin:0;">Dashboard Admin</h2>
+            <p style="margin:0; color:gray;">Data Pemain (Players, Clubs, Countries)</p>
+        </div>
+        <a href="/dashboard" class="btn-back">⬅ Kembali</a>
+    </div>
+
+    <div class="table-box">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>                  <th>Nama Lengkap</th>        <th>Departemen (Klub)</th>   <th>Status (Negara)</th>     <th>Aksi</th>                </tr>
+            </thead>
+            <tbody>
+                <% if(data.length > 0) { %>
+                    <% data.forEach(row => { %>
+                    <tr>
+                        <td>#<%= row.player_id %></td>
+
+                        <td><strong><%= row.long_name %></strong></td>
+
+                        <td class="dept-col"><%= row.club_name ? row.club_name : 'Free Agent' %></td>
+
+                        <td class="status-col"><%= row.country_name ? row.country_name : 'Unknown' %></td>
+
+                        <td>
+                            <button class="btn-action edit">Edit</button>
+                            <button class="btn-action del">Hapus</button>
+                        </td>
+                    </tr>
+                    <% }) %>
+                <% } else { %>
+                    <tr>
+                        <td colspan="5" style="text-align:center; padding: 20px;">
+                            Tidak ada data.
+                        </td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

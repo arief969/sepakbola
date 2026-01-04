@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>403 Forbidden</title>
+    <style>
+        body { 
+            font-family: sans-serif; 
+            text-align: center; 
+            padding: 50px; 
+            background-color: #f8d7da; /* Merah muda */
+            color: #721c24; /* Merah tua */
+        }
+        .box {
+            border: 2px solid #f5c6cb;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        h1 { font-size: 50px; margin: 0; }
+        .role-badge {
+            background: #333; color: #fff; padding: 2px 8px; border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>⛔ 403</h1>
+        <h2>AKSES DITOLAK!</h2>
+        <p>Maaf <b><%= username %></b>, Anda tidak boleh masuk ke sini.</p>
+        <hr>
+        <p>
+            Role Anda: <span class="role-badge"><%= myRole %></span><br>
+            Syarat Masuk: <span class="role-badge"><%= requiredRole %></span>
+        </p>
+        <br>
+        <a href="/dashboard">⬅️ Kabur ke Dashboard</a>
+    </div>
+</body>
+</html>
